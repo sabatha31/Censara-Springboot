@@ -1,0 +1,30 @@
+services:
+  db:
+    container_name: censara-db
+    image: postgres:17
+
+    environment:
+      POSTGRES_USER: bongz
+      POSTGRES_PASSWORD: 525456
+      POSTGRES_DB: Censara
+      PGDATA: /data/postgres
+
+    volumes:
+      - db:/data/postgres
+
+    ports:
+      - "5332:5432"
+
+    networks:
+      - db
+
+    restart: unless-stopped
+
+
+networks:
+  db:
+    driver: bridge
+
+
+volumes:
+  db:
