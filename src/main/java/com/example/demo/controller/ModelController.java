@@ -1,21 +1,19 @@
 package com.example.demo.controller;
 
 import java.util.List;
-
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.UserService;
+import com.example.demo.entity.CUser;
 import com.example.demo.entity.UserData;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
 
 
-
-@Controller
-@RequestMapping("/api")
+@RestController
+@RequestMapping("/Modelapi")
 public class ModelController {
     UserService userService;
 
@@ -23,19 +21,26 @@ public class ModelController {
         this.userService = userService;
     }
     
-    @PostMapping("/saveUserData")
-    public void saveUserData(@RequestBody UserData userData) {
-        // Implement the logic to save user data to the database
-        userService.saveUserData(userData);
-    }
 
     @GetMapping("/getUserData")
-    public List<UserData> getUserData(int userId) {
+    public List<UserData> getAllUserData() {
         // Implement the logic to retrieve user data from the database
         return userService.getAllUserData(); // Replace with actual retrieval logic
     }
 
-    
+    @GetMapping("/getUserByUsername/{username}")
+    public CUser getUserByUsername(@PathVariable String username) {
+        return userService.getUserByUsername(username);
+    }
 
+    @GetMapping("/getUsers")
+    public List<CUser> getUsers(){
+        return userService.getUsers();
 
+    }
+
+    @GetMapping("/getUserById/{id}")
+    public UserData getUserDataById(@PathVariable int id) {
+        return userService.getUserDataById(id);
+    }
 }

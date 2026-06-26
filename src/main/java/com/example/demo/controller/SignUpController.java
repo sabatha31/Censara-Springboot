@@ -6,12 +6,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entity.CUser;
-
+import com.example.demo.entity.UserData;
 import com.example.demo.UserService;
 
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/SignUpApi")
 public class SignUpController{
     UserService userService;
 
@@ -27,17 +27,14 @@ public class SignUpController{
             return "not-registered";
         }
 
-        userService.registerUser(
-                user.getName(),
-                user.getUsername(),
-                user.getPassword(),
-                user.getEmail());
-
-    //    CUser u = userService.getUsers().stream()
-     //           .filter(u -> u.getUsername().equals(user.getUsername()))
-     //           .findFirst()
-     //           .orElse(null);
-
+        userService.registerUser(user);
+       
              return "registered";
 }
+
+    @PostMapping("/saveUserData/{id}")
+    public void saveUserData(@RequestBody UserData userData,int id) {
+        // Implement the logic to save user data to the database
+        userService.saveUserData(userData,id);
+    }
 }

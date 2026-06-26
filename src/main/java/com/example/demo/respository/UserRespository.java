@@ -7,7 +7,6 @@ import com.example.demo.entity.CUser;
 
 public interface UserRespository extends JpaRepository<CUser, Integer> {
     CUser findByUsername(String username);
-    CUser findByPassword(String password);
 
     
 }

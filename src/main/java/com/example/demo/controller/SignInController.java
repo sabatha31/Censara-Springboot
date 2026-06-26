@@ -16,7 +16,7 @@ import com.example.demo.UserService;
  
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/SignInApi")
 public class SignInController {
     UserService userService;
 
@@ -25,7 +25,7 @@ public class SignInController {
     }
 
     @GetMapping("/getUsers")
-    public List<CUser> sendUsers(){
+    public List<CUser> getUsers(){
         return userService.getUsers();
 
     }
@@ -37,6 +37,14 @@ public String signIn(@RequestBody LoginRequest request) {
             request.getUsername(),
             request.getPassword());
 
-    return verify ? "passed" : "failed";
+    if(verify){
+        return "passed";
+    } 
+    else {
+        return "failed";
+    }
+
+
 }
 }
+

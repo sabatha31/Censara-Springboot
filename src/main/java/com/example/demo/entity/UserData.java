@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class UserData {
@@ -15,12 +17,29 @@ public class UserData {
     private double goalAmount;
     private double monthlySavings;
 
+
+
+     @OneToOne
+    @JoinColumn(name = "user_id")
+    private CUser user;
+
+    public UserData() {
+    }
+
     public UserData(int id, double montlySalary, double monthlyExpenses, double goalAmount,double monthlySavings) {
         this.id = id;
         this.montlySalary = montlySalary;
         this.monthlyExpenses = monthlyExpenses;
         this.goalAmount = goalAmount;
         this.monthlySavings = monthlySavings;
+    }
+
+    public CUser getUser() {
+        return user;
+    }
+
+    public void setUser(CUser user) {
+        this.user = user;
     }
 
     public void setMonthlySavings(double monthlySavings) {
