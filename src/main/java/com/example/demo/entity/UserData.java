@@ -11,13 +11,11 @@ import jakarta.persistence.OneToOne;
 public class UserData {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     private double montlySalary;
     private double monthlyExpenses;
     private double goalAmount;
     private double monthlySavings;
-
-
 
      @OneToOne
     @JoinColumn(name = "user_id")
@@ -26,8 +24,7 @@ public class UserData {
     public UserData() {
     }
 
-    public UserData(int id, double montlySalary, double monthlyExpenses, double goalAmount,double monthlySavings) {
-        this.id = id;
+    public UserData(double montlySalary, double monthlyExpenses, double goalAmount,double monthlySavings) {
         this.montlySalary = montlySalary;
         this.monthlyExpenses = monthlyExpenses;
         this.goalAmount = goalAmount;
@@ -50,7 +47,7 @@ public class UserData {
         return monthlySavings;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -66,7 +63,7 @@ public class UserData {
         return goalAmount;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -81,7 +78,5 @@ public class UserData {
     public void setGoalAmount(double goalAmount) {
         this.goalAmount = goalAmount;
     }
-
-
     
 }

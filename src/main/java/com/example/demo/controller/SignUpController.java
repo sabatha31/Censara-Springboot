@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,8 +34,11 @@ public class SignUpController{
 }
 
     @PostMapping("/saveUserData/{id}")
-    public void saveUserData(@RequestBody UserData userData,int id) {
+    public void saveUserData(@RequestBody UserData userData, @PathVariable int id) {
         // Implement the logic to save user data to the database
         userService.saveUserData(userData,id);
+        System.out.println("Controller reached");
+        System.out.println("ID = " + id);
+        System.out.println("Salary = " + userData.getMontlySalary());
     }
 }

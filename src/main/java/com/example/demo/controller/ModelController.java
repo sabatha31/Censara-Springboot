@@ -41,6 +41,6 @@ public class ModelController {
 
     @GetMapping("/getUserById/{id}")
     public UserData getUserDataById(@PathVariable int id) {
-        return userService.getUserDataById(id);
+        return userService.getUserDataByUserId(id);
     }
 }

@@ -62,19 +62,27 @@ public boolean userExists(String username) {
 }
 
 public void saveUserData(UserData userData, int id) {
-     CUser user = userRespository.findById(id).get();
+     System.out.println("Inside service");
+
+    CUser user = userRespository.findById(id).orElse(null);
+
+    System.out.println(user);
 
     userData.setUser(user);
-    
+
     dataRespository.save(userData);
+
+    System.out.println("Saved!");
     
+}
+
+public UserData getUserDataByUserId(int id) {
+    return dataRespository.findByUserId(id);
 }
 
 public CUser getUserByUsername(String username) {
     return userRespository.findByUsername(username);}
 
-public UserData getUserDataById(int id) {
-    return dataRespository.findById(id);}
 
 public CUser getUserById(int id) {
     return userRespository.findById(id).orElse(null);
